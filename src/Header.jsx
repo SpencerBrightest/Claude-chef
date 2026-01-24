@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <header>
         <img src="/src/assets/chef image bg remover.png" alt="" />
-      <h1>Spencer chef</h1>
+      <h1>$pencer Chef</h1>
     </header> 
   )
 }
