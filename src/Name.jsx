@@ -17,9 +17,14 @@ const ingridientsList=ingridients.map((ingridients)=>(
   <li key={ingridients}>{ingridients}</li>
 ))
 
-function addIngridient(formData){
-  const ingridient=formData.get('ingridients')
-   setIngridients(ingrid=>[...ingrid,ingridient])
+function addIngridient(e){
+  e.preventDefault()
+  const formData = new FormData(e.target)
+  const ingridient = formData.get('ingridients')
+  if(ingridient.trim()){
+    setIngridients(ingrid => [...ingrid, ingridient])
+    e.target.reset()
+  }
 }
 
 
@@ -29,12 +34,12 @@ function addIngridient(formData){
 
 
     <main>
-       <form action={addIngridient} className='add-ingridient-form' >
+       <form onSubmit={addIngridient} className='add-ingridient-form' >
         <input type="text"  
         arai-label="Add ingridient"
          placeholder='e.g onions'
          name="ingridients" />
-        <button>Add ingridient</button>
+        <button type="submit">Add ingridient</button>
         </form> 
 
 
@@ -44,7 +49,7 @@ function addIngridient(formData){
           {ingridientsList}
         </ul>
          
-        {ingridientsList.length> 3 && <div className="get-recipe-container">
+        {ingridients.length > 3 && <div className="get-recipe-container">
           <h3>Ready for a recipe?</h3>
           <p>Generate me a recipe from your list of ingridietnts</p>
           <button onClick={togglerecipeshown}>Get a recipe</button>
